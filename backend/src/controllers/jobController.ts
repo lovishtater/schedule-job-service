@@ -11,8 +11,8 @@ export const createJob = (req: Request, res: Response): void => {
 
     jobs.push(newJob);
     writeJobsToFile(jobs);
-
     processJob(jobId);
+
     res.json({ id: jobId });
   } catch (error) {
     console.error('Error creating job:', error);
