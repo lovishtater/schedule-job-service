@@ -22,8 +22,8 @@ export const createJob = (req: Request, res: Response): void => {
 
 export const getAllJobs = (req: Request, res: Response): void => {
   try {
-    const jobs: IJob[] = readJobsFromFile();
-    res.json(jobs);
+    const jobs: IJob[] = readJobsFromFile().sort((a, b) =>  new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
+    res.json( jobs );
   } catch (error) {
     console.error('Error getting jobs:', error);
     res.status(500).json({ error: 'Internal server error' });

@@ -1,4 +1,5 @@
 import { Server } from 'socket.io';
+import { IJob } from './types/jobs';
 
 export let ioInstance: Server;
 
@@ -10,4 +11,8 @@ export const initializeSocket = (io: Server) => {
       console.log(`Client disconnected [id=${socket.id}]`);
     });
   });
+};
+
+export const notifyJobCompleted = (io: Server, job: IJob) => {
+  io.emit('jobCompleted', job);
 };

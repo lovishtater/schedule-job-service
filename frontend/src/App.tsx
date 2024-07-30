@@ -1,12 +1,12 @@
+import React from 'react';
+import JobList from './components/JobList';
 
-function App() {
+const App: React.FC = () => {
   return (
-    <div className="h-screen flex items-center justify-center">
-    <h1 className="text-3xl font-bold underline">
-      Hello
-    </h1>c
-  </div>
+    <div className="min-h-screen bg-gray-100">
+      <JobList />
+    </div>
   );
-}
+};
 
 export default App;
