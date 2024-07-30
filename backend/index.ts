@@ -30,6 +30,10 @@ app.use((req, res, next) => {
   next();
 });
 
+app.get('/', (req, res) => {
+  res.send('Welcome to the image processing API service');
+})
+
 app.use('/api', jobRoutes);
 
 initializeSocket(io);
