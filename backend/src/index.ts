@@ -1,9 +1,9 @@
 import express from 'express';
-import jobRoutes from './src/routes/jobRouter';
+import jobRoutes from './routes/jobRouter';
 import cluster from 'cluster';
 import consoleStamp from 'console-stamp';
 import http from 'http';
-import { initializeSocket } from './src/socket';
+import { initializeSocket } from './socket';
 import { Server } from 'socket.io';
 import 'dotenv/config'
 
