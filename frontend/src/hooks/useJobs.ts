@@ -74,6 +74,8 @@ const useJobs = () => {
   const createNewJob = async () => {
     try {
       const { id } = await createJob();
+      if (!id) return;
+
       const newJob: IJob = {
         id,
         status: "PENDING",

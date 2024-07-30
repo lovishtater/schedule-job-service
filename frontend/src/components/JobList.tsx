@@ -76,8 +76,10 @@ const JobRow: React.FC<{ job: IJob }> = ({ job }) => {
     <tr>
       <td className="px-4 py-2 border-b">{job.id}</td>
       <td className="px-4 py-2 border-b">
-        <div className={`${isPending ? "animate-pulse h-6 w-1/2 bg-gray-200 rounded-md" : ""}`}>
-         {isCompleted ? job.description : ""}
+        <div
+          className={`${isPending ? "animate-pulse h-6 w-1/2 bg-gray-200 rounded-md" : ""}`}
+        >
+          {isCompleted ? job.description : ""}
         </div>
       </td>
       <td className="px-4 py-2 border-b">{getFormattedDate(job.createdAt)}</td>

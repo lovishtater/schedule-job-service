@@ -5,5 +5,3 @@ export interface IJob {
   description?: string;
   createdAt: string;
 }
-
-
