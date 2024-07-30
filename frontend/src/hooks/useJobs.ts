@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
-import { io, Socket } from "socket.io-client";
+import { io } from "socket.io-client";
 import { fetchJobs, createJob } from "../services/jobApis";
 import { IJob } from "../types/jobTypes";
 
@@ -9,7 +9,6 @@ const SOCKET_URL = process.env.REACT_APP_SERVER_URL || "http://localhost:3002";
 const useJobs = () => {
   const [jobs, setJobs] = useState<IJob[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
-  const [socket, setSocket] = useState<Socket | null>(null);
   const [isPolling, setIsPolling] = useState<boolean>(false);
 
   useEffect(() => {
@@ -48,8 +47,6 @@ const useJobs = () => {
         return updatedJobs;
       });
     });
-
-    setSocket(newSocket);
 
     return () => {
       newSocket.disconnect();
