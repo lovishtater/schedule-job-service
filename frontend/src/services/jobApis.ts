@@ -1,9 +1,9 @@
 import { IJob } from "../types/jobTypes";
 
-const BASE_URL = process.env.REACT_APP_SERVER_URL || "http://localhost:3000";
+const BASE_URL = process.env.REACT_APP_SERVER_URL || "http://localhost:3000/api";
 
 export const fetchJobs = async (): Promise<IJob[]> => {
-    const response = await fetch(`${BASE_URL}/api/jobs`);
+    const response = await fetch(`${BASE_URL}/jobs`);
     if (!response.ok) {
       throw new Error('Failed to fetch jobs');
     }
@@ -11,7 +11,7 @@ export const fetchJobs = async (): Promise<IJob[]> => {
   };
   
   export const createJob = async (): Promise<{ id: string }> => {
-    const response = await fetch(`${BASE_URL}/api/jobs`, {
+    const response = await fetch(`${BASE_URL}/jobs`, {
       method: 'POST',
     });
     if (!response.ok) {
@@ -21,7 +21,7 @@ export const fetchJobs = async (): Promise<IJob[]> => {
   };
   
   export const fetchJobById = async (id: string): Promise<IJob> => {
-    const response = await fetch(`${BASE_URL}/api/jobs/${id}`);
+    const response = await fetch(`${BASE_URL}/jobs/${id}`);
     if (!response.ok) {
       throw new Error(`Failed to fetch job with ID ${id}`);
     }
