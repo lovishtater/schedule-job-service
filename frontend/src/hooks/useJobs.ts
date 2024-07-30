@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
-import socketIOClient, { io, Socket } from "socket.io-client";
+import { io, Socket } from "socket.io-client";
 import { fetchJobs, createJob } from "../services/jobApis";
 import { IJob } from "../types/jobTypes";
 
-const SOCKET_URL = "http://localhost:3000"; // Update with your backend URL
+const SOCKET_URL = process.env.REACT_APP_SERVER_URL || "http://localhost:3000";
 
 const useJobs = () => {
   const [jobs, setJobs] = useState<IJob[]>([]);
