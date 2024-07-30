@@ -6,14 +6,9 @@ This project is a full-stack application consisting of a backend service using N
 
 ## Table of Contents
 
-- [Deployment](#deployment)
 - [Time Report](#time-report)
 - [Setup Instructions](#setup-instructions)
 - [Technologies Used](#technologies-used)
-
-## Deployment
-- Frontend: [https://job-service.vercel.app/](https://job-service.vercel.app/)
-- Backend: [https://job-service-backend.vercel.app/](https://job-service-backend.vercel.app/)
 
 ## Time Report
 
@@ -34,15 +29,12 @@ This project is a full-stack application consisting of a backend service using N
    - **Preparing the Approach and Design:** 0.5 hour
    - **Job List UI:** 2 hours
    - **Socket.IO Integration for Real-time Updates:** 1.5 hours
-   
-4. **Deployment Preparation**
-   - **Configuring Vercel for Backend and Frontend:** 0.5 hour
 
-5. **Documentation and Final Touches**
-   - **Writing README and Setup Instructions:** 0.5 hour
+4. **Documentation and Final Touches**
+   - **Writing README and Setup Instructions:** 1 hour
    - **Final Testing and Cleanup:** 0.5 hour
 
-**Total Time Spent:** 18 hours
+**Total Time Spent:** 18.5 hours
 
 ## Setup Instructions
 
