@@ -1,6 +1,6 @@
 import { IJob } from "../types/jobTypes";
 
-const BASE_URL = process.env.REACT_APP_SERVER_URL || "http://localhost:3000/api";
+const BASE_URL = process.env.REACT_APP_SERVER_URL || "http://localhost:3002/api";
 
 export const fetchJobs = async (): Promise<IJob[]> => {
     const response = await fetch(`${BASE_URL}/jobs`);

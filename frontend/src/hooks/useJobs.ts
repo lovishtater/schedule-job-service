@@ -4,7 +4,7 @@ import { io, Socket } from "socket.io-client";
 import { fetchJobs, createJob } from "../services/jobApis";
 import { IJob } from "../types/jobTypes";
 
-const SOCKET_URL = process.env.REACT_APP_SERVER_URL || "http://localhost:3000";
+const SOCKET_URL = process.env.REACT_APP_SERVER_URL || "http://localhost:3002";
 
 const useJobs = () => {
   const [jobs, setJobs] = useState<IJob[]>([]);
