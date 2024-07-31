@@ -4,7 +4,7 @@ import path from 'path';
 
 const filePath = 
   path.join(__dirname, '../../../jobs.json');
-  console.log(filePath);
+  
 
 export const readJobsFromFile = (): IJob[] => {
   if (!fs.existsSync(filePath)) {

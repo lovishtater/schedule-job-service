@@ -9,7 +9,7 @@ export const createJob = (req: Request, res: Response): void => {
     const newJob = createNewJob();
     const jobId = newJob.id;
 
-    jobs.push(newJob);
+    jobs.unshift(newJob);
     writeJobsToFile(jobs);
     processJob(jobId);
 
@@ -22,10 +22,7 @@ export const createJob = (req: Request, res: Response): void => {
 
 export const getAllJobs = (req: Request, res: Response): void => {
   try {
-    const jobs: IJob[] = readJobsFromFile().sort(
-      (a, b) =>
-        new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
-    );
+    const jobs: IJob[] = readJobsFromFile()
     res.json(jobs);
   } catch (error) {
     console.error('Error getting jobs:', error);

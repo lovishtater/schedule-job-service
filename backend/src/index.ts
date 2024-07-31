@@ -45,7 +45,7 @@ app.use('/api', jobRoutes);
 initializeSocket(io);
 
 server.listen(port, () => {
-  console.log(`Server running at ${port}`);
+  console.log(`Server running at http://localhost:${port}`);
 });
 
 export default app;
