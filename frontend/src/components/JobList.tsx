@@ -23,11 +23,11 @@ const JobList: React.FC = () => {
         <table className="min-w-full bg-white border border-gray-200">
           <thead>
             <tr>
-              <th className="px-4 py-2 border-b-2">ID</th>
-              <th className="px-4 py-2 border-b-2">Description</th>
-              <th className="px-4 py-2 border-b-2">Created At</th>
-              <th className="px-4 py-2 border-b-2">Image</th>
-              <th className="px-4 py-2 border-b-2">Status</th>
+              <th className="px-4 py-2 border-b-2 text-left">ID</th>
+              <th className="px-4 py-2 border-b-2 text-left">Description</th>
+              <th className="px-4 py-2 border-b-2 text-left">Created At</th>
+              <th className="px-4 py-2 border-b-2 text-left">Image</th>
+              <th className="px-4 py-2 border-b-2 text-left">Status</th>
             </tr>
           </thead>
           <tbody>

@@ -1,12 +1,12 @@
 import { ioInstance, notifyJobCompleted } from '../socket';
 import { IJob } from '../types/jobs';
-import { v4 as uuidv4 } from 'uuid';
+import crypto from 'crypto';
 import { readJobsFromFile, writeJobsToFile } from '../utils/fileDB';
 import { JOB_STATUS } from '../utils/constants';
 import { getRandomDelay } from '../utils/utils';
 
 export const createNewJob = (): IJob => {
-  const jobId = uuidv4();
+  const jobId = crypto.randomBytes(4).toString('hex');
   return {
     id: jobId,
     status: JOB_STATUS.PENDING,
