@@ -4,7 +4,7 @@ import { io } from "socket.io-client";
 import { fetchJobs, createJob } from "../services/jobApis";
 import { IJob } from "../types/jobTypes";
 
-const SOCKET_URL = process.env.REACT_APP_SERVER_URL || "http://localhost:3002";
+const SOCKET_URL = process.env.REACT_APP_SERVER_URL || "http://localhost:3001";
 
 const useJobs = () => {
   const [jobs, setJobs] = useState<IJob[]>([]);
@@ -38,7 +38,6 @@ const useJobs = () => {
     });
 
     newSocket.on("jobCompleted", (job: IJob) => {
-      console.log("Job completed:", job);
       setJobs((prevJobs) => {
         const updatedJobs = prevJobs.map((j) => (j.id === job.id ? job : j));
         if (!updatedJobs.find((j) => j.id === job.id)) {

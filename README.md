@@ -67,7 +67,7 @@ This project is a full-stack application consisting of a backend service using N
    npm run dev
    ```
 
-   The server will be running on `http://localhost:3000`.
+   The server will be running on `http://localhost:3001`.
 
 ### Frontend Setup
 
@@ -89,7 +89,7 @@ This project is a full-stack application consisting of a backend service using N
    npm start
    ```
 
-   The frontend will be running on `http://localhost:3001`.
+   The frontend will be running on `http://localhost:3000`.
 
 
 ## Technologies Used

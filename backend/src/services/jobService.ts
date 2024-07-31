@@ -3,6 +3,7 @@ import { IJob } from '../types/jobs';
 import { v4 as uuidv4 } from 'uuid';
 import { readJobsFromFile, writeJobsToFile } from '../utils/fileDB';
 import { JOB_STATUS } from '../utils/constants';
+import { getRandomDelay } from '../utils/utils';
 
 export const createNewJob = (): IJob => {
   const jobId = uuidv4();
@@ -15,58 +16,43 @@ export const createNewJob = (): IJob => {
 };
 
 export const processJob = async (jobId: string): Promise<void> => {
-  setTimeout(
-    async () => {
-      const jobs: IJob[] = readJobsFromFile();
-      const jobIndex = jobs.findIndex((job) => job.id === jobId);
+  const randomDelay = getRandomDelay();
 
-      if (jobIndex !== -1) {
-        try {
-          const { imageUrl, description } = await getRandomFoodImage();
-          jobs[jobIndex].status = JOB_STATUS.COMPLETED;
-          jobs[jobIndex].imageUrl = imageUrl;
-          jobs[jobIndex].description = description;
-          writeJobsToFile(jobs);
+  setTimeout(async () => {
+    const jobs: IJob[] = readJobsFromFile();
+    const jobIndex = jobs.findIndex((job) => job.id === jobId);
 
-          notifyJobCompleted(ioInstance, jobs[jobIndex]);
-        } catch (error) {
-          console.error('Error processing the job:', error);
-          jobs[jobIndex].status = JOB_STATUS.FAILED;
-          writeJobsToFile(jobs);
-
-          ioInstance.emit('jobCompleted', {
-            id: jobId,
-            result: 'Failed to fetch the image',
-          });
-        }
+    if (jobIndex !== -1) {
+      try {
+        const { imageUrl, description } = await getRandomFoodImage();
+        jobs[jobIndex].status = JOB_STATUS.COMPLETED;
+        jobs[jobIndex].imageUrl = imageUrl;
+        jobs[jobIndex].description = description;
+      } catch (error) {
+        console.error('Error processing the job:', error);
+        jobs[jobIndex].status = JOB_STATUS.FAILED;
       }
-    },
-    Math.floor(Math.random() * 5) * 1000 + 5000
-  );
+      writeJobsToFile(jobs);
+      notifyJobCompleted(ioInstance, jobs[jobIndex]);
+    }
+  }, randomDelay);
 };
 
-async function getRandomFoodImage(): Promise<{
+const getRandomFoodImage = async (): Promise<{
   imageUrl: string;
   description: string;
-}> {
+}> => {
   const url = `https://api.unsplash.com/photos/random?query=food&client_id=${process.env.UNSPLASH_ACCESS_KEY}`;
 
-  try {
-    const response = await fetch(url);
-    if (!response.ok) {
-      throw new Error(
-        `HTTP error! Status: ${response.status} - ${response.statusText}`
-      );
-    }
+  const response = await fetch(url);
+  if (!response.ok)
+    throw new Error(
+      `HTTP error! (${response.status}) - ${response.statusText}`
+    );
 
-    const data = await response.json();
-
-    return {
-      imageUrl: data.urls.regular,
-      description: data.description,
-    };
-  } catch (error) {
-    console.error('Error fetching the image:', error);
-    throw new Error('Error fetching the image');
-  }
-}
+  const data = await response.json();
+  return {
+    imageUrl: data.urls.regular,
+    description: data.description,
+  };
+};

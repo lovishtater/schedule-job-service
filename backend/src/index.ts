@@ -10,7 +10,7 @@ import 'dotenv/config';
 consoleStamp(console, { format: ':date(dd/mm/yyyy HH:MM:ss.l):label' });
 
 const app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3001;
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {

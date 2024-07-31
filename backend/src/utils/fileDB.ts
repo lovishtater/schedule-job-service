@@ -3,7 +3,7 @@ import { IJob } from '../types/jobs';
 import path from 'path';
 
 const filePath = 
-  path.join(__dirname, '../../jobs.json');
+  path.join(__dirname, '../../../jobs.json');
   console.log(filePath);
 
 export const readJobsFromFile = (): IJob[] => {
