@@ -62,6 +62,6 @@ const getRandomFoodImage = async (): Promise<{
   const data = await response.json();
   return {
     imageUrl: data.urls.regular,
-    description: data.description,
+    description: data.description || data.alt_description,
   };
 };
