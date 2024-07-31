@@ -6,6 +6,7 @@ import http from 'http';
 import { initializeSocket } from './socket';
 import { Server } from 'socket.io';
 import 'dotenv/config';
+import { evaluatePendingJobsAndRetry } from './services/jobService';
 
 consoleStamp(console, { format: ':date(dd/mm/yyyy HH:MM:ss.l):label' });
 
@@ -46,6 +47,7 @@ initializeSocket(io);
 
 server.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
+  evaluatePendingJobsAndRetry();
 });
 
 export default app;

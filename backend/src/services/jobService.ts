@@ -15,6 +15,15 @@ export const createNewJob = (): IJob => {
   };
 };
 
+export const evaluatePendingJobsAndRetry = (): void => {
+  const jobs: IJob[] = readJobsFromFile();
+  const pendingJobs =  jobs.filter((job) => job.status === JOB_STATUS.PENDING);
+
+  pendingJobs.forEach((job) => {
+    processJob(job.id);
+  });
+}
+
 export const processJob = async (jobId: string): Promise<void> => {
   const randomDelay = getRandomDelay();
 
